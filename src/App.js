@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Affix, Col, Row } from "antd";
 import FaqCard from "./Components/FaqCard";
 import AddButton from "./Components/AddButton";
 import ResetButton from "./Components/ResetButton";
@@ -54,18 +54,22 @@ const App = () => {
               key={index}
             />
           ))}
-          <Row gutter={16}>
-            <Col span={12}>
-              <AddButton onClick={handleAddButtonClick} />
-            </Col>
-            <Col span={12}>
-              <ResetButton onResetConfirm={handleResetConfirm} />
-            </Col>
-          </Row>
+          <Affix offsetBottom={10}>
+            <Row gutter={16}>
+              <Col span={12}>
+                <AddButton onClick={handleAddButtonClick} />
+              </Col>
+              <Col span={12}>
+                <ResetButton onResetConfirm={handleResetConfirm} />
+              </Col>
+            </Row>
+          </Affix>
         </Col>
         <Col span={12}>
-          <h2>Schema 源碼</h2>
-          <FaqSchema value={faq} />
+          <Affix offsetTop={54}>
+            <h2>Schema 源碼</h2>
+            <FaqSchema value={faq} />
+          </Affix>
         </Col>
       </Row>
     </>

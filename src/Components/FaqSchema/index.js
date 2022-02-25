@@ -1,4 +1,4 @@
-import { Card, Button, Tooltip } from "antd";
+import { Card, Button } from "antd";
 import { CopyOutlined } from "@ant-design/icons";
 import { useCopyToClipboard } from "react-use";
 import { generateSchema } from "../../utils/generateSchema";
@@ -18,7 +18,10 @@ const FaqSchema = ({ value }) => {
 
   return (
     <>
-      <Card style={{ marginBottom: 12 }} size="small">
+      <Card
+        style={{ marginBottom: 12, maxHeight: 600, overflow: "scroll" }}
+        size="small"
+      >
         <code>{schema}</code>
       </Card>
 
