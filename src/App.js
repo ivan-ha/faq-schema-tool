@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import FaqCard from "./Components/FaqCard";
 import AddButton from "./Components/AddButton";
+import ResetButton from "./Components/ResetButton";
 import { useState } from "react";
 import RichTextEditor from "react-rte";
 import * as R from "ramda";
@@ -29,7 +30,7 @@ const App = () => {
     setFaq((prevFaq) => [...prevFaq, initialFaqValue]);
   };
 
-  console.log(faq);
+  const handleResetConfirm = () => setFaq([initialFaqValue]);
 
   return (
     <>
@@ -51,7 +52,14 @@ const App = () => {
               onAnswerChange={(answer) => handleAnswerChange(answer, index)}
             />
           ))}
-          <AddButton onClick={handleAddButtonClick} />
+          <Row>
+            <Col span={12}>
+              <AddButton onClick={handleAddButtonClick} />
+            </Col>
+            <Col span={12}>
+              <ResetButton onResetConfirm={handleResetConfirm} />
+            </Col>
+          </Row>
         </Col>
         <Col span={12}>
           <div>hihi</div>
