@@ -1,15 +1,19 @@
-import { Card, Button } from "antd";
+import { Card, Button, Tooltip } from "antd";
 import { CopyOutlined } from "@ant-design/icons";
 import { useCopyToClipboard } from "react-use";
 import { generateSchema } from "../../utils/generateSchema";
+import { useState } from "react";
 
 const FaqSchema = ({ value }) => {
+  const [copied, setCopied] = useState(false);
   const [, copyToClipboard] = useCopyToClipboard();
 
   const schema = generateSchema(value);
 
   const handleCopyClick = () => {
     copyToClipboard(String(schema));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1000);
   };
 
   return (
@@ -23,8 +27,9 @@ const FaqSchema = ({ value }) => {
         icon={<CopyOutlined />}
         onClick={handleCopyClick}
         block
+        loading={copied}
       >
-        複製源碼
+        {copied ? "複製成功" : "複製源碼"}
       </Button>
     </>
   );
