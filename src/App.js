@@ -2,6 +2,7 @@ import { Col, Row } from "antd";
 import FaqCard from "./Components/FaqCard";
 import AddButton from "./Components/AddButton";
 import ResetButton from "./Components/ResetButton";
+import FaqSchema from "./Components/FaqSchema";
 import { useState } from "react";
 import RichTextEditor from "react-rte";
 import * as R from "ramda";
@@ -39,20 +40,21 @@ const App = () => {
           <h1>FAQ Schema 生成器</h1>
         </Col>
       </Row>
-      <Row>
+      <Row gutter={16}>
         <Col span={12}>
-          {faq.map((f, index) => (
+          {faq.map((faqItem, index) => (
             <FaqCard
               questionPlaceholder={`問題 ${index + 1}`}
               answerPlaceholder={`答案 ${index + 1}`}
-              value={f}
+              value={faqItem}
               onQuestionChange={(question) =>
                 handleQuestionChange(question, index)
               }
               onAnswerChange={(answer) => handleAnswerChange(answer, index)}
+              key={index}
             />
           ))}
-          <Row>
+          <Row gutter={16}>
             <Col span={12}>
               <AddButton onClick={handleAddButtonClick} />
             </Col>
@@ -62,7 +64,8 @@ const App = () => {
           </Row>
         </Col>
         <Col span={12}>
-          <div>hihi</div>
+          <h2>Schema 源碼</h2>
+          <FaqSchema value={faq} />
         </Col>
       </Row>
     </>
