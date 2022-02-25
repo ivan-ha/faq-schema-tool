@@ -16,7 +16,7 @@ const FaqCard = ({ titlePlaceholder }) => {
   };
 
   return (
-    <Card title={title}>
+    <Card title={title} style={{ marginBottom: 12 }}>
       <RichTextEditor
         value={value}
         onChange={handleChange}
