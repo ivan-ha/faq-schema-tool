@@ -19,7 +19,7 @@ const FaqSchema = ({ value }) => {
   return (
     <>
       <Card
-        style={{ marginBottom: 12, maxHeight: 600, overflow: "scroll" }}
+        style={{ marginBottom: 12, height: 500, overflow: "scroll" }}
         size="small"
       >
         <code>{schema}</code>
