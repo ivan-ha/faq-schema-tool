@@ -9,6 +9,8 @@ const ResetButton = ({ onResetConfirm }) => {
     <Popconfirm
       title="你確定要清除所有嗎？"
       visible={visible}
+      okText="是"
+      cancelText="否"
       onConfirm={() => {
         setVisible(false);
         onResetConfirm();
