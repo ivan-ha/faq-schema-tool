@@ -2,18 +2,32 @@ import { Affix, Col, Row } from "antd";
 import FaqCard from "./Components/FaqCard";
 import AddButton from "./Components/AddButton";
 import ResetButton from "./Components/ResetButton";
+import SaveButton from "./Components/SaveButton";
 import FaqSchema from "./Components/FaqSchema";
 import { useState } from "react";
 import RichTextEditor from "react-rte";
 import * as R from "ramda";
+import { useLocalStorage } from "react-use";
 
 const initialFaqValue = {
   question: "",
   answer: RichTextEditor.createEmptyValue(),
 };
 
+const faqToString = (faq) =>
+  faq.map((f) => ({ ...f, answer: f.answer.toString("html") }));
+
 const App = () => {
-  const [faq, setFaq] = useState([initialFaqValue]);
+  const [storage, setStorage] = useLocalStorage(
+    "faq-schema",
+    faqToString([initialFaqValue])
+  );
+  const [faq, setFaq] = useState(
+    storage.map((v) => ({
+      ...v,
+      answer: RichTextEditor.createValueFromString(v.answer, "html"),
+    }))
+  );
 
   const handleQuestionChange = (question, index) => {
     setFaq((prevFaq) =>
@@ -31,7 +45,14 @@ const App = () => {
     setFaq((prevFaq) => [...prevFaq, initialFaqValue]);
   };
 
-  const handleResetConfirm = () => setFaq([initialFaqValue]);
+  const handleResetConfirm = () => {
+    setFaq([initialFaqValue]);
+    setStorage(faqToString([initialFaqValue]));
+  };
+
+  const handleSaveButtonClick = () => {
+    setStorage(faqToString(faq));
+  };
 
   return (
     <>
@@ -55,9 +76,12 @@ const App = () => {
             />
           ))}
           <Affix offsetBottom={10}>
-            <Row gutter={16}>
-              <Col span={12}>
+            <Row gutter={[8, 8]}>
+              <Col span={24}>
                 <AddButton onClick={handleAddButtonClick} />
+              </Col>
+              <Col span={12}>
+                <SaveButton onClick={handleSaveButtonClick} />
               </Col>
               <Col span={12}>
                 <ResetButton onResetConfirm={handleResetConfirm} />
