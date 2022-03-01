@@ -18,6 +18,7 @@ const SaveButton = ({ onClick }) => {
       onClick={handleClick}
       block
       loading={saved}
+      id="save-btn"
     >
       {saved ? "儲存成功" : "儲存"}
     </Button>

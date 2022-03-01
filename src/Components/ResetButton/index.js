@@ -23,6 +23,7 @@ const ResetButton = ({ onResetConfirm }) => {
         onClick={() => setVisible(true)}
         block
         danger
+        id="reset-btn"
       >
         清除所有
       </Button>

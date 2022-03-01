@@ -31,6 +31,7 @@ const FaqSchema = ({ value }) => {
         onClick={handleCopyClick}
         block
         loading={copied}
+        id="copy-btn"
       >
         {copied ? "複製成功" : "複製源碼"}
       </Button>
