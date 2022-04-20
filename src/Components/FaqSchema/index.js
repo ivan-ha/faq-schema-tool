@@ -4,11 +4,11 @@ import { useCopyToClipboard } from "react-use";
 import { generateSchema } from "../../utils/generateSchema";
 import { useState } from "react";
 
-const FaqSchema = ({ value }) => {
+const FaqSchema = ({ value, isWhiteBackground }) => {
   const [copied, setCopied] = useState(false);
   const [, copyToClipboard] = useCopyToClipboard();
 
-  const schema = generateSchema(value);
+  const schema = generateSchema({ value, isWhiteBackground });
 
   const handleCopyClick = () => {
     copyToClipboard(String(schema));
