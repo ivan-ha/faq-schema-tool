@@ -6,10 +6,10 @@ const schemaSuffix = "</div>";
 const itemPrefix =
   '<div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" class="faq-question">';
 const itemSuffix = "</div>";
-const questionPrefix = '<h3 itemprop="name" class="faq-q">';
+const questionPrefix = '<h3 itemprop="name" class="faq-q" style="font-weight:bold;">';
 const questionSuffix = "</h3>";
 const answerPrefix =
-  '<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" class="faq-a">';
+  '<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" class="faq-a" style="margin-bottom:16px;">';
 const answerSuffix = "</div>";
 
 const generateSchema = ({ value, isWhiteBackground }) => {
@@ -23,7 +23,7 @@ const generateSchema = ({ value, isWhiteBackground }) => {
           v.question +
           questionSuffix +
           answerPrefix +
-          v.answer.toString("html").replace("<p>", "") +
+          v.answer.toString("html").replace("<p>", "").replace("\">", "\" style=\"color:#0033e8\">") +
           answerSuffix +
           itemSuffix
       )
