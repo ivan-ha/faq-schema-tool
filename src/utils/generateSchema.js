@@ -12,10 +12,11 @@ const answerPrefix =
   '<div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text" class="faq-a" style="margin-bottom:16px;">';
 const answerSuffix = "</div>";
 
-const generateSchema = ({ value, isWhiteBackground }) => {
+const generateSchema = ({value, isWhiteBackground}) => {
   return (
     (isWhiteBackground ? schemaPrefixWhite : schemaPrefix) +
     value
+      .filter((v) => Boolean(v.question) && v.answer.toString("html") !== "<p><br></p>")
       .map(
         (v) =>
           itemPrefix +
@@ -32,4 +33,4 @@ const generateSchema = ({ value, isWhiteBackground }) => {
   );
 };
 
-export { generateSchema };
+export {generateSchema};
