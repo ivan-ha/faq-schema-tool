@@ -59,6 +59,10 @@ const App = () => {
     setStorage(faqToString(faq));
   };
 
+  const handleDeleteClick = (index) => {
+    setFaq((prevFaq) => R.remove(index, 1, prevFaq));
+  };
+
   return (
     <>
       <Row>
@@ -77,6 +81,7 @@ const App = () => {
                 handleQuestionChange(question, index)
               }
               onAnswerChange={(answer) => handleAnswerChange(answer, index)}
+              onDeleteClick={() => handleDeleteClick(index)}
               key={index}
             />
           ))}

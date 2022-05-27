@@ -1,6 +1,7 @@
 import "./index.css";
 import { Card, Input } from "antd";
 import RichTextEditor from "react-rte";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const toolbarConfig = {
   display: ["LINK_BUTTONS"],
@@ -12,6 +13,7 @@ const FaqCard = ({
   value,
   onQuestionChange,
   onAnswerChange,
+  onDeleteClick,
 }) => {
   const title = (
     <Input
@@ -22,7 +24,19 @@ const FaqCard = ({
   );
 
   return (
-    <Card title={title} style={{ marginBottom: 12 }} size="small">
+    <Card
+      title={title}
+      style={{ marginBottom: 12 }}
+      size="small"
+      extra={
+        <DeleteOutlined
+          key="delete"
+          onClick={onDeleteClick}
+          style={{ marginLeft: 10 }}
+        />
+      }
+      hoverable
+    >
       <RichTextEditor
         value={value.answer}
         onChange={onAnswerChange}
