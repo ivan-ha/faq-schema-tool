@@ -1,4 +1,4 @@
-import {generateSchema} from "../generateSchema";
+import { generateSchema } from "../generateSchema";
 import RichTextEditor from "react-rte";
 
 const inputFixture = [
@@ -26,33 +26,48 @@ const outputFixtureWhite =
 
 describe("generateSchema", () => {
   it("generate FAQ schema correctly", () => {
-    expect(generateSchema({value: inputFixture})).toStrictEqual(outputFixture);
-    expect(generateSchema({value: inputFixture, isWhiteBackground: false})).toStrictEqual(outputFixture);
+    expect(generateSchema({ value: inputFixture })).toStrictEqual(
+      outputFixture
+    );
+    expect(
+      generateSchema({ value: inputFixture, isWhiteBackground: false })
+    ).toStrictEqual(outputFixture);
   });
 
   it("generate FAQ schema with white background correctly", () => {
-    expect(generateSchema({value: inputFixture, isWhiteBackground: true})).toStrictEqual(outputFixtureWhite);
+    expect(
+      generateSchema({ value: inputFixture, isWhiteBackground: true })
+    ).toStrictEqual(outputFixtureWhite);
   });
 
   it("ignore generate empty question", () => {
-    expect(generateSchema({
-      value: [...inputFixture, {
-        question: "", answer: RichTextEditor.createValueFromString(
-          "<p>答：潤肺止咳，口感粗糙似木片。</p>",
-          "html"
-        ),
-      }]
-    })).toStrictEqual(outputFixture);
-  })
+    expect(
+      generateSchema({
+        value: [
+          ...inputFixture,
+          {
+            question: "",
+            answer: RichTextEditor.createValueFromString(
+              "<p>答：潤肺止咳，口感粗糙似木片。</p>",
+              "html"
+            ),
+          },
+        ],
+      })
+    ).toStrictEqual(outputFixture);
+  });
 
-  it('ignore generate empty answer', () => {
-    expect(generateSchema({
-      value: [...inputFixture, {
-        question: "問：虎乳靈芝有甚麼功效？", answer: RichTextEditor.createValueFromString(
-          "<p><br></p>",
-          "html"
-        ),
-      }]
-    })).toStrictEqual(outputFixture);
-  })
+  it("ignore generate empty answer", () => {
+    expect(
+      generateSchema({
+        value: [
+          ...inputFixture,
+          {
+            question: "問：虎乳靈芝有甚麼功效？",
+            answer: RichTextEditor.createValueFromString("<p><br></p>", "html"),
+          },
+        ],
+      })
+    ).toStrictEqual(outputFixture);
+  });
 });

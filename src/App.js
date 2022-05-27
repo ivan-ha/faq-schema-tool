@@ -28,7 +28,7 @@ const App = () => {
       answer: RichTextEditor.createValueFromString(v.answer, "html"),
     }))
   );
-  const [isWhiteBackground, setIsWhiteBackground] = useState(true)
+  const [isWhiteBackground, setIsWhiteBackground] = useState(true);
 
   const handleQuestionChange = (question, index) => {
     setFaq((prevFaq) =>
@@ -42,7 +42,9 @@ const App = () => {
     );
   };
 
-  const handleWhiteBackgroundClick = (e) => { setIsWhiteBackground(e.target.checked) }
+  const handleWhiteBackgroundClick = (e) => {
+    setIsWhiteBackground(e.target.checked);
+  };
 
   const handleAddButtonClick = () => {
     setFaq((prevFaq) => [...prevFaq, initialFaqValue]);
@@ -81,7 +83,9 @@ const App = () => {
           <Affix offsetBottom={10}>
             <Row gutter={[8, 8]}>
               <Col span={24}>
-                <Checkbox onChange={handleWhiteBackgroundClick} defaultChecked>設定為白色底</Checkbox>
+                <Checkbox onChange={handleWhiteBackgroundClick} defaultChecked>
+                  設定為白色底
+                </Checkbox>
               </Col>
               <Col span={24}>
                 <AddButton onClick={handleAddButtonClick} />
@@ -98,7 +102,7 @@ const App = () => {
         <Col span={12}>
           <Affix offsetTop={54}>
             <h2>Schema 源碼</h2>
-            <FaqSchema value={faq} isWhiteBackground={isWhiteBackground}/>
+            <FaqSchema value={faq} isWhiteBackground={isWhiteBackground} />
           </Affix>
         </Col>
       </Row>
